@@ -7,7 +7,7 @@ Vanilla Web Component to embed HTML/CSS/JS demos with code &amp; preview panels 
 
 # License
 
-The project is under ["I'm so tired" 1.0](LICENCE) license. \
+The project is under ["I'm so tired" 1.0](LICENSE) license. \
 Please **take the time** to read and *check if you're allowed* to use it before importing this component.
 
 *Thank you luna who made it ([source](https://olmewe.com/notepad/istsl/)).*
