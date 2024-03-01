@@ -2,6 +2,12 @@
   "name": "code-showcase",
   "version": "0.0.1",
   "description": "Web Component to embed HTML/CSS/JS demos",
+  "scripts": {
+    "dev": "npx @11ty/eleventy-dev-server --dir=src"
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GuerillaHQ/code-showcase.git"
@@ -10,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/GuerillaHQ/code-showcase/issues"
   },
-  "homepage": "https://github.com/GuerillaHQ/code-showcase#readme"
+  "homepage": "https://github.com/GuerillaHQ/code-showcase#readme",
+  "devDependencies": {
+    "@11ty/eleventy-dev-server": "^1.0.4"
+  }
 }

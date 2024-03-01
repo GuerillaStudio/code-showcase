@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Guérilla.Studio Code Showcase Prototype</title>
+
+		<script type="module" src="web-component.js"></script>
+	</head>
+	<body>
+		<code-showcase>
+			<template shadowrootmode="open">
+				<style>
+					#container {
+						display: flex;
+					}
+
+					#container > section {
+						flex: 1 1 0px;
+					}
+				</style>
+
+				<div id="container">
+					<section>
+						<details open>
+							<summary>HTML</summary>
+							<pre><code><slot name="html"></slot></code></pre>
+						</details>
+
+						<details open>
+							<summary>CSS</summary>
+							<pre><code><slot name="css"></slot></code></pre>
+						</details>
+
+						<details open>
+							<summary>JS</summary>
+							<pre><code><slot name="js"></slot></code></pre>
+						</details>
+					</section>
+
+					<section>
+						<div>Result</div>
+						<iframe id="output" frameborder="0"></iframe>
+					</section>
+				</div>
+			</template>
+
+<pre slot="html"><code class="language-html">&lt;button type="button" id="button"&gt;Click me !&lt;/button&gt;</code></pre>
+
+<pre slot="css"><code class="language-css">@keyframes color {
+	0% { background: #33CCCC; }
+	20% { background: #33CC36; }
+	40% { background: #B8CC33; }
+	60% { background: #FCCA00; }
+	80% { background: #33CC36; }
+	100% { background: #33CCCC; }
+}
+
+button {
+	text-align: center;
+	font-size: 2.5em;
+	border-radius: 6px;
+	border: 0;
+	padding: 6px 12px;
+	color: white;
+	animation: color 9s infinite linear;
+}</code></pre>
+
+<pre slot="js"><code class="language-js">document.getElementById("button").onclick = () => {
+	alert('Hello there')
+}</code></pre>
+		</code-showcase>
+	</body>
+</html>
