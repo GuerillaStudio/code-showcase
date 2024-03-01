@@ -11,37 +11,99 @@
 		<code-showcase>
 			<template shadowrootmode="open">
 				<style>
+					.hidden { display: none; }
+					/* Hide only visually, but have it available for screen readers (from HTML5 Boilerplate) */
+					.visually-hidden {
+						position: absolute;
+						overflow: hidden;
+						width: 1px;
+						height: 1px;
+						padding: 0;
+						border: 0;
+						margin: -1px;
+						clip: rect(0 0 0 0);
+					}
+
 					#container {
+						display: grid;
+						grid-template-columns: 1fr 1fr;
+						grid-template-rows: auto 1fr;
+						gap: .5em;
+					}
+
+					#container .controls {
+						display: grid;
+						grid-template-columns: 1fr 1fr;
+						grid-column: 1 / 3;
+						gap: .5rem;
+					}
+
+					#container .controls :is(.code, .preview) {
+						grid-row: 1 / 2;
+						gap: .25em;
 						display: flex;
 					}
 
-					#container > section {
-						flex: 1 1 0px;
+					#container .controls .code {
+						grid-column: 1 / 2;
+					}
+
+					#container .controls .preview {
+						grid-column: 2 / 3;
+					}
+
+					#container .panel :is(.code, .preview) {
+						grid-row: 2 / 3;
+					}
+
+					#container .panel.code {
+						grid-column: 1 / 2;
+					}
+
+					#container .panel.preview {
+						grid-column: 2 / 3;
 					}
 				</style>
 
 				<div id="container">
-					<section>
-						<details open>
-							<summary>HTML</summary>
+					<!-- A11y labels -->
+					<div id="label-tabs" class="hidden">Code and result panels</div>
+					<div id="label-tab-html" class="hidden">Show HTML code</div>
+					<div id="label-tab-css" class="hidden">Show CSS code</div>
+					<div id="label-tab-js" class="hidden">Show JavaScript code</div>
+					<div id="label-tab-preview-show" class="hidden">Show result</div>
+					<div id="label-tab-preview-hide" class="hidden">Hide result</div>
+
+					<div class="controls" role="tablist" aria-labelledby="label-tabs">
+						<div class="code">
+							<button class="controls-btn" type="button" id="tab-btn-html" aria-controls="tab-panel-html" aria-describedby="label-tab-html" aria-selected="true">HTML</button>
+							<button class="controls-btn" type="button" id="tab-btn-css" aria-controls="tab-panel-css" aria-describedby="label-tab-css">CSS</button>
+							<button class="controls-btn" type="button" id="tab-btn-js" aria-controls="tab-panel-js" aria-describedby="label-tab-js">JS</button>
+						</div>
+						<div class="preview">
+							<button class="controls-btn" type="button" id="tab-btn-preview" aria-controls="tab-panel-preview" aria-describedby="label-tab-preview-hide">Result</button>
+						</div>
+					</div>
+					<div class="panel code">
+						<details class="code-section" id="tab-panel-html" role="tabpanel" aria-labelledby="tab-btn-html" open>
+							<summary class="visually-hidden">HTML</summary>
 							<pre><code><slot name="html"></slot></code></pre>
 						</details>
 
-						<details open>
-							<summary>CSS</summary>
+						<details class="code-section" id="tab-panel-css" role="tabpanel" aria-labelledby="tab-btn-css">
+							<summary class="visually-hidden">CSS</summary>
 							<pre><code><slot name="css"></slot></code></pre>
 						</details>
 
-						<details open>
-							<summary>JS</summary>
+						<details class="code-section" id="tab-panel-js" role="tabpanel" aria-labelledby="tab-btn-js">
+							<summary class="visually-hidden">JS</summary>
 							<pre><code><slot name="js"></slot></code></pre>
 						</details>
-					</section>
+					</div>
 
-					<section>
-						<div>Result</div>
+					<div class="panel preview" id="tab-panel-preview" role="tabpanel" aria-labelledby="tab-btn-preview">
 						<iframe id="output" frameborder="0"></iframe>
-					</section>
+					</div>
 				</div>
 			</template>
 
