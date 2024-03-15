@@ -1,0 +1,110 @@
+.hidden { display: none; }
+/* Hide only visually, but have it available for screen readers (from HTML5 Boilerplate) */
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+}
+
+:host {
+  --color-grey-dark-1: 0 0 30;
+  --color-grey-dark-2: 0 0 66;
+  --color-grey-light-1: 0 0 92;
+  --color-grey-light-2: 0 0 96;
+  --radius-global: .625rem;
+  --border-width-global: .125rem;
+  --padding-global-inline: .9375rem;
+  --padding-global-block: .75rem;
+  display: block;
+  width: 80%;
+  container-name: host;
+  container-type: size;
+  background-color: var(--color-grey-light-1);
+  border-radius: var(--radius-global);
+  border: var(--border-width-global) solid hsl(var(--color-grey-dark-2));
+}
+
+#container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: var(--border-width-global);
+  background-color: hsl(var(--color-grey-dark-2));
+  height: 100cqh;
+}
+
+.controls {
+  padding: var(--padding-global-block) var(--padding-global-inline);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column: 1 / 3;
+  gap: .5rem;
+  z-index: 1;
+  background-color: hsl(var(--color-grey-light-2));
+  border-bottom: var(--border-width-global) solid hsl(var(--color-grey-dark-2));
+  box-shadow: 0 .25rem .25rem 0 hsl(var(--color-grey-dark-2) / 50%);
+  border-top-left-radius: calc(var(--radius-global) - var(--border-width-global));
+  border-top-right-radius: calc(var(--radius-global) - var(--border-width-global));
+}
+
+.controls :is(.code, .preview) {
+  grid-row: 1 / 2;
+  gap: var(--border-width-global);
+  display: flex;
+
+}
+
+.controls .code {
+  grid-column: 1 / 2;
+}
+
+.controls .preview {
+  grid-column: 2 / 3;
+}
+
+.panel:is(.code, .preview) {
+  grid-row: 2 / 3;
+  background-color: hsl(var(--color-grey-light-1));
+}
+
+.panel.code {
+  grid-column: 1 / 2;
+  container-name: codePanel;
+  container-type: size;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: none;
+  scroll-behavior: auto;
+  scrollbar-gutter: stable;
+  border-bottom-left-radius: calc(var(--radius-global) - var(--border-width-global));
+  box-shadow: inset -0.25rem 0 .4375rem 0 hsl(var(--color-grey-dark-2) / 30%);
+}
+
+.panel.code .code-section[open] {
+  min-height: calc(100cqh - 1lh - (var(--border-width-global) * 2));
+}
+
+.panel.code .code-section summary {
+  line-height: 1.5em;
+  background-color: hsl(var(--color-grey-dark-2));
+  color: #fff;
+  padding-inline: var(--padding-global-inline);
+}
+
+.panel.code .code-section summary::marker {
+  line-height: .7em;
+}
+
+.panel.code .code-section pre {
+  padding-inline-start: var(--padding-global-inline);
+}
+
+.panel.preview {
+  grid-column: 2 / 3;
+  background-color: hsl(var(--color-grey-light-2));
+  border-bottom-right-radius: calc(var(--radius-global) - var(--border-width-global));
+}

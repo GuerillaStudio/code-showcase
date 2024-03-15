@@ -8,63 +8,11 @@
 		<script type="module" src="web-component.js"></script>
 	</head>
 	<body>
-		<code-showcase>
+		<code-showcase style="height: 500px">
 			<template shadowrootmode="open">
 				<style>
-					.hidden { display: none; }
-					/* Hide only visually, but have it available for screen readers (from HTML5 Boilerplate) */
-					.visually-hidden {
-						position: absolute;
-						overflow: hidden;
-						width: 1px;
-						height: 1px;
-						padding: 0;
-						border: 0;
-						margin: -1px;
-						clip: rect(0 0 0 0);
-					}
-
-					#container {
-						display: grid;
-						grid-template-columns: 1fr 1fr;
-						grid-template-rows: auto 1fr;
-						gap: .5em;
-					}
-
-					#container .controls {
-						display: grid;
-						grid-template-columns: 1fr 1fr;
-						grid-column: 1 / 3;
-						gap: .5rem;
-					}
-
-					#container .controls :is(.code, .preview) {
-						grid-row: 1 / 2;
-						gap: .25em;
-						display: flex;
-					}
-
-					#container .controls .code {
-						grid-column: 1 / 2;
-					}
-
-					#container .controls .preview {
-						grid-column: 2 / 3;
-					}
-
-					#container .panel :is(.code, .preview) {
-						grid-row: 2 / 3;
-					}
-
-					#container .panel.code {
-						grid-column: 1 / 2;
-					}
-
-					#container .panel.preview {
-						grid-column: 2 / 3;
-					}
+					@import url(./style.css);
 				</style>
-
 				<div id="container">
 					<!-- A11y labels -->
 					<div id="label-tabs" class="hidden">Code and result panels</div>
@@ -86,17 +34,17 @@
 					</div>
 					<div class="panel code">
 						<details class="code-section" id="tab-panel-html" role="tabpanel" aria-labelledby="tab-btn-html" open>
-							<summary class="visually-hidden">HTML</summary>
+							<summary>HTML</summary>
 							<pre><code><slot name="html"></slot></code></pre>
 						</details>
 
-						<details class="code-section" id="tab-panel-css" role="tabpanel" aria-labelledby="tab-btn-css">
-							<summary class="visually-hidden">CSS</summary>
+						<details class="code-section" id="tab-panel-css" role="tabpanel" aria-labelledby="tab-btn-css" open>
+							<summary>CSS</summary>
 							<pre><code><slot name="css"></slot></code></pre>
 						</details>
 
-						<details class="code-section" id="tab-panel-js" role="tabpanel" aria-labelledby="tab-btn-js">
-							<summary class="visually-hidden">JS</summary>
+						<details class="code-section" id="tab-panel-js" role="tabpanel" aria-labelledby="tab-btn-js" open>
+							<summary>JS</summary>
 							<pre><code><slot name="js"></slot></code></pre>
 						</details>
 					</div>
